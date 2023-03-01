@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FormEl, Label, Title, Input, Button } from './Form.Styled';
+import { FormEl, Label, Title, Input, Button } from './ContactsForm.Styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { nanoid } from 'nanoid';
 import { selectContacts } from 'redux/selectors';
 
-export const Form = () => {
+export const ContactsForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const [userName, setUserName] = useState('');

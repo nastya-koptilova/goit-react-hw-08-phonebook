@@ -1,21 +1,25 @@
 import React from 'react';
 import { GlobalStyle } from './GlobalStyle';
-import { Form } from './Form/Form';
-import { Contacts } from './Contacts/Contacts';
-import { Filter } from './Filter/Filter';
-import css from './App.module.css';
+import { ContactsPage } from 'pages/ContactsPage';
+import { Layout } from './Layout/Layout';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { LoginPage } from 'pages/LoginPage';
+import { RegisterPage } from 'pages/RegisterPage';
+import { ErrorPage } from 'pages/ErrorPage';
 
 export const App = () => {
   return (
     <>
       <GlobalStyle />
-      <div className={css.container}>
-        <h1>Phonebook</h1>
-        <Form />
-        <h2>Contacts</h2>
-        <Filter />
-        <Contacts />
-      </div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Navigate to="/login" />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </>
   );
 };
