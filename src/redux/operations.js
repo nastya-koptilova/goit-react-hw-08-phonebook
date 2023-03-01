@@ -3,7 +3,37 @@ import {
   getContactsData,
   postContactsData,
   removeContactsData,
+  userLogin,
+  userRegister,
 } from 'services/API';
+
+export const registerNewUser = createAsyncThunk(
+  'user/register',
+  async (credential, thunkAPI) => {
+    try {
+      console.log(credential)
+      const result = await userRegister(credential);
+      console.log(result);
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const loginUser = createAsyncThunk(
+  'user/login',
+  async (credential, thunkAPI) => {
+    try {
+      console.log(credential)
+      const result = await userLogin(credential);
+      console.log(result);
+      return result;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',

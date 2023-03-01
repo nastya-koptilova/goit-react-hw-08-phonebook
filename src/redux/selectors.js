@@ -9,3 +9,4 @@ export const selectFilterContacts = createSelector(
       el.name.toLowerCase().includes(search.toLowerCase().trim())
     )
 );
+export const selectIsLoggedIn = state => state.userData.isLoggedIn;
