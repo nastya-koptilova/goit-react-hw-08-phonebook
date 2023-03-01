@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { FormEl, Label, Title, Input, Button } from './ContactsForm.Styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { nanoid } from 'nanoid';
 import { selectContacts } from 'redux/selectors';
+import { FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
 
 export const ContactsForm = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export const ContactsForm = () => {
     const contact = {
       id: nanoid(),
       name: userName,
-      tel: userTel,
+      number: userTel,
     };
     if (contacts.some(el => el.name === contact.name)) {
       alert(`${contact.name} is already in contacts!`);
@@ -42,10 +42,23 @@ export const ContactsForm = () => {
   };
 
   return (
-    <FormEl onSubmit={onAddClick}>
-      <Label>
-        <Title>Name</Title>
+    <FormControl
+      border="1px"
+      borderColor="gray.200"
+      w={450}
+      p={10}
+      mb={10}
+      align="center"
+      boxShadow="lg"
+      rounded="md"
+      bg="white"
+      onSubmit={onAddClick}
+    >
+      <FormLabel>
+        <Text as="b">Name</Text>
         <Input
+          mb={5}
+          mt={2}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -54,8 +67,9 @@ export const ContactsForm = () => {
           onChange={onNameChange}
           value={userName}
         />
-        <Title>Nubmer</Title>
+        <Text as="b">Number</Text>
         <Input
+          mt={2}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -64,8 +78,10 @@ export const ContactsForm = () => {
           value={userTel}
           onChange={onTelChange}
         />
-      </Label>
-      <Button type="submit">Add contact</Button>
-    </FormEl>
+      </FormLabel>
+      <Button mt={5} type="submit">
+        Add contact
+      </Button>
+    </FormControl>
   );
 };

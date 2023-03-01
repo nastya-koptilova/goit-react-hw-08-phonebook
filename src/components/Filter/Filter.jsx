@@ -1,7 +1,7 @@
+import { Text, Input } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchContact } from 'redux/filterSlice';
 import { selectSearch } from 'redux/selectors';
-import { Title, Input } from './Filter.Styled';
 
 export function Filter() {
   const dispatch = useDispatch();
@@ -14,8 +14,18 @@ export function Filter() {
 
   return (
     <div>
-      <Title>Find contacts by name:</Title>
-      <Input type="text" name="filterTerm" value={search} onChange={onSearch} />
+      <Text fontSize="xl" textAlign="center">
+        Find contacts by name:
+      </Text>
+      <Input
+        w={350}
+        mb={10}
+        mt={3}
+        type="text"
+        name="filterTerm"
+        value={search}
+        onChange={onSearch}
+      />
     </div>
   );
 }

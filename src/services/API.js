@@ -19,7 +19,7 @@ export const userLogin = async (credential) => {
 }
 
 export const getContactsData = async () => {
-    const { data } = await axios.get(
+    const { data } = await PUBLIC_HOST.get(
       `https://63fce778859df29986c72bc9.mockapi.io/contacts/contacts`
     );
     return data;
@@ -38,6 +38,21 @@ export const getContactsData = async () => {
     );
     return data;
   };
+
+  // export const getContactsData = async () => {
+  //   const { data } = await PUBLIC_HOST.get('/contacts');
+  //   return data;
+  // };
+  
+  // export const postContactsData = async contact => {
+  //   const { data } = await PUBLIC_HOST.post('/contacts', contact);
+  //   return data;
+  // };
+  
+  // export const removeContactsData = async id => {
+  //   const { data } = await PUBLIC_HOST.delete(`/contacts/${id}`);
+  //   return data;
+  // };
 
   export const token = {
     set: (token) => {

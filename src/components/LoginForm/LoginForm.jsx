@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Button, FormControl, FormLabel, Input, Text } from '@chakra-ui/react';
 
 export const LoginForm = ({ isRegisterForm = true, onSubmit }) => {
   const [name, setName] = useState('');
@@ -24,32 +25,51 @@ export const LoginForm = ({ isRegisterForm = true, onSubmit }) => {
       return;
     }
     onSubmit({ email, password });
-  }
+  };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <FormControl
+      border="1px"
+      borderColor="gray.200"
+      w={450}
+      p={10}
+      mb={10}
+      align="center"
+      boxShadow="lg"
+      rounded="md"
+      bg="white"
+      onSubmit={handleFormSubmit}
+    >
       {isRegisterForm && (
-        <label>
-          <input
+        <FormLabel>
+          <Text as="b">Name</Text>
+          <Input
+            mb={4}
+            mt={2}
             type="text"
             name="name"
             placeholder="Full name"
             required
             onChange={handleInputChange}
           />
-        </label>
+        </FormLabel>
       )}
-      <label>
-        <input
+      <FormLabel>
+        <Text as="b">Email</Text>
+        <Input
+          mb={4}
+          mt={2}
           type="email"
           name="email"
           placeholder="Email"
           required
           onChange={handleInputChange}
         />
-      </label>
-      <label>
-        <input
+      </FormLabel>
+      <FormLabel>
+        <Text as="b">Password</Text>
+        <Input
+          mt={2}
           type="password"
           name="password"
           placeholder="Password"
@@ -57,9 +77,11 @@ export const LoginForm = ({ isRegisterForm = true, onSubmit }) => {
           required
           onChange={handleInputChange}
         />
-      </label>
-      <button type="submit">{isRegisterForm ? 'Sign Up' : 'Sign In'}</button>
-    </form>
+      </FormLabel>
+      <Button mt={5} type="submit">
+        {isRegisterForm ? 'Sign Up' : 'Sign In'}
+      </Button>
+    </FormControl>
   );
 };
 
