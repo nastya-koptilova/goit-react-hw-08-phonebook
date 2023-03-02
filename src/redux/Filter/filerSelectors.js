@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { selectContacts } from 'redux/Contacts/contactsSelectors';
 
-export const selectContacts = state => state.contactsData.contacts;
 export const selectSearch = state => state.filterData.search;
 export const selectFilterContacts = createSelector(
   [selectContacts, selectSearch],
@@ -9,4 +9,3 @@ export const selectFilterContacts = createSelector(
       el.name.toLowerCase().includes(search.toLowerCase().trim())
     )
 );
-export const selectIsLoggedIn = state => state.userData.isLoggedIn;

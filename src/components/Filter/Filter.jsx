@@ -1,9 +1,9 @@
 import { Text, Input } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchContact } from 'redux/filterSlice';
-import { selectSearch } from 'redux/selectors';
+import { selectSearch } from 'redux/Filter/filerSelectors';
+import { searchContact } from 'redux/Filter/filterSlice';
 
-export function Filter() {
+function Filter() {
   const dispatch = useDispatch();
   const search = useSelector(selectSearch);
 
@@ -29,3 +29,5 @@ export function Filter() {
     </div>
   );
 }
+
+export default Filter;

@@ -1,37 +1,28 @@
-import { Tab, TabList, Tabs } from '@chakra-ui/react';
-import Loader from 'components/Loader/Loader';
 import React, { Suspense } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/User/userSelectors';
+import Loader from 'components/Loader/Loader';
+import LoginHeader from 'components/LoginHeader/LoginHeader';
+import LogoutHeader from 'components/LogoutHeader/LogoutHeader';
 
-export const Layout = () => {
+const Layout = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <>
       <header>
         <nav>
-          <Tabs display="flex" alignItems="end" justifyContent="space-between">
-            <Tab>
-              <Link to="/contacts">Contacts</Link>
-            </Tab>
-            <TabList
-              display="flex"
-              alignItems="end"
-              justifyContent="space-between"
-            >
-              <Tab>
-                <Link to="/register">Sign Up</Link>
-              </Tab>
-              <Tab>
-                <Link to="/login">Sign In</Link>
-              </Tab>
-            </TabList>
-          </Tabs>
+          {isLoggedIn && <LoginHeader />}
+          {!isLoggedIn && <LogoutHeader />}
         </nav>
       </header>
-      {/* <Suspense fallback={<Loader />}> */}
-      <main>
-        <Outlet />
-      </main>
-      {/* </Suspense> */}
+      <Suspense fallback={<Loader />}>
+        <main>
+          <Outlet />
+        </main>
+      </Suspense>
     </>
   );
 };
+
+export default Layout;
